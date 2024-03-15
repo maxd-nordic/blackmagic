@@ -26,3 +26,5 @@ src/ftd2xx.dll
 scripts/swolisten
 
 .direnv/
+
+gcc-arm-none-eabi-*/

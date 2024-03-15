@@ -389,7 +389,7 @@ uint32_t firmware_swdp_low_access(adiv5_debug_port_s *dp, const uint8_t RnW, con
 		swd_proc.seq_out(request, 8U);
 		ack = swd_proc.seq_in(3U);
 		if (ack == SWDP_ACK_FAULT) {
-			DEBUG_ERROR("SWD access resulted in fault, retrying\n");
+			//DEBUG_ERROR("SWD access resulted in fault, retrying\n");
 			/* On fault, abort the request and repeat */
 			/* Yes, this is self-recursive.. no, we can't think of a better option */
 			adiv5_dp_write(dp, ADIV5_DP_ABORT,
@@ -412,7 +412,7 @@ uint32_t firmware_swdp_low_access(adiv5_debug_port_s *dp, const uint8_t RnW, con
 	}
 
 	if (ack == SWDP_ACK_NO_RESPONSE) {
-		DEBUG_ERROR("SWD access resulted in no response\n");
+		// DEBUG_ERROR("SWD access resulted in no response\n");
 		dp->fault = ack;
 		return 0;
 	}

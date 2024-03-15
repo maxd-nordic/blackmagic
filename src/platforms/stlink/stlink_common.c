@@ -108,7 +108,7 @@ uint32_t detect_rev(void)
 		gpio_clear(GPIOA, GPIO12);
 		gpio_set_mode(GPIOA, GPIO_MODE_OUTPUT_2_MHZ, GPIO_CNF_OUTPUT_OPENDRAIN, GPIO12);
 	}
-	return revision;
+	return 0;
 #endif
 }
 

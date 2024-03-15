@@ -286,7 +286,7 @@ static uint32_t jlink_adiv5_raw_access(
 		}
 		/* If we got a fault first try, do a proper retry */
 		if (ack == SWDP_ACK_FAULT && first_try) {
-			DEBUG_ERROR("SWD access resulted in fault, retrying\n");
+			//DEBUG_ERROR("SWD access resulted in fault, retrying\n");
 			/* On fault, abort the request and repeat */
 			/* Yes, this is self-recursive.. no, we can't think of a better option */
 			jlink_adiv5_raw_write_no_check(ADIV5_DP_ABORT,
@@ -314,7 +314,7 @@ static uint32_t jlink_adiv5_raw_access(
 	}
 
 	if (ack == SWDP_ACK_NO_RESPONSE) {
-		DEBUG_ERROR("SWD access resulted in no response\n");
+		// DEBUG_ERROR("SWD access resulted in no response\n");
 		dp->fault = ack;
 		return 0;
 	}
