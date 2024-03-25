@@ -24,9 +24,16 @@
 
 #define NRF91_CTRL_AP_RESET          ADIV5_AP_REG(0x000)
 #define NRF91_CTRL_AP_ERASEALL       ADIV5_AP_REG(0x004)
+#define NRF91_CTRL_AP_ERASEALL_STATUS ADIV5_AP_REG(0x008)
+#define NRF91_CTRL_AP_APPROTECT_STATUS ADIV5_AP_REG(0x00C)
+#define NRF91_CTRL_AP_ERASEPROTECT_STATUS ADIV5_AP_REG(0x018)
+#define NRF91_CTRL_AP_ERASEPROTECT_DISABLE ADIV5_AP_REG(0x01C)
+#define NRF91_CTRL_AP_MAILBOX_TX_DATA ADIV5_AP_REG(0x020)
+#define NRF91_CTRL_AP_MAILBOX_TX_STATUS ADIV5_AP_REG(0x024)
+#define NRF91_CTRL_AP_MAILBOX_RX_DATA ADIV5_AP_REG(0x028)
+#define NRF91_CTRL_AP_MAILBOX_RX_STATUS ADIV5_AP_REG(0x02C)
 #define NRF91_CTRL_IDR_EXPECTED      0x12880000
 #define NRF91_AHB_AP_IDR_EXPECTED    0x84770001
-#define NRF91_CTRL_AP_ERASEALLSTATUS ADIV5_AP_REG(0x008)
 
 /* https://infocenter.nordicsemi.com/topic/ps_nrf9161/uicr.html */
 #define NRF91_UICR_APPROTECT               0x00FF8000U
@@ -50,7 +57,7 @@ static bool nrf91_ctrl_ap_mass_erase(adiv5_access_port_s *ap)
 	bool ret = false;
 
 	while (true) {
-		uint32_t status = adiv5_ap_read(ap, NRF91_CTRL_AP_ERASEALLSTATUS);
+		uint32_t status = adiv5_ap_read(ap, NRF91_CTRL_AP_ERASEALL_STATUS);
 		if (status == 0) {
 			ret = true;
 			DEBUG_INFO("nRF91 mass erase succeeded.\n");
